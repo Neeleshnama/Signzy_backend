@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "nodemon server.js",
+    "build": "echo \"Building server...\" && tsc --build tsconfig.json || echo \"No TypeScript build needed\"",
     "start": "node server.js"
   },
   "author": "Neelesh",
