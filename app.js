@@ -8,9 +8,26 @@ const app = express();
 
 // Connect to database
 connectDB();
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? [
+        'https://signzy-red.vercel.app',
+        'https://signzy-red.vercel.app/login'
+      ] 
+    : 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'Accept'
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('dev'));
 
